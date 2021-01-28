@@ -12,6 +12,10 @@
 
 @implementation YHTool
 
++(void)test{
+    NSLog(@"qq");
+}
+
 #pragma mark -空串判断
 +(BOOL)isNotBlank:(NSString *)string{
     if (!string) {

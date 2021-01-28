@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YHTool : NSObject
 
++(void)test;
+
 /************* 字符串API ************/
 +(BOOL)isNotBlank:(NSString *)string;   /** 空串判断 */
 +(NSDictionary *)strToDic:(NSString *)string;   /** 字符串转字典 */
@@ -20,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(CGFloat)getTextWidth:(NSString *)string font:(UIFont *)font;  /** 获取文本宽度 */
 +(CGFloat)getTextHeight:(NSString *)string font:(UIFont *)font width:(CGFloat)width;   /** 获取文本高度 */
 +(CGFloat)getTextHeight:(NSString *)string font:(UIFont *)font width:(CGFloat)width space:(CGFloat)space; /** 获取文本高度带行间距 */
+
 /************* 字典API ************/
 +(void)logProperty:(NSDictionary *)dic;  /** 属性打印 */
 +(id)safeGetValue:(NSDictionary *)dic key:(NSString *)key;  /** 获取字典中value防空处理 */
