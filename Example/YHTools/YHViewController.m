@@ -7,6 +7,7 @@
 //
 
 #import "YHViewController.h"
+#import "YHToolsHeader.h"
 
 @interface YHViewController ()
 
@@ -18,6 +19,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [YHTool isNotBlank:@""];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
