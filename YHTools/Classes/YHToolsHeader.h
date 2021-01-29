@@ -11,13 +11,14 @@
 
 //基础工具类
 #import "YHTool.h"
-#import "YXHUDProgressView.h"
+#import "NSString+StringHelper.h"
 #import "NSDictionary+DicHelper.h"
 #import "NSArray+ArrayHelper.h"
 #import "UIColor+ColorHelper.h"
 #import "UIView+FrameHelper.h"
 #import "UILabel+LableHelper.h"
 #import "UIButton+ButtonHelper.h"
+#import "YXHUDProgressView.h"
 
 //常用API
 #define KTITLE(name) self.navigationItem.title = name
@@ -26,7 +27,6 @@
 #define KBFONT(font) [UIFont fontWithName:@"Helvetica-Bold" size:font]
 #define KNFONT(font) [UIFont fontWithName:@"DIN Alternate" size:font]
 #define KIMAGE(name) [UIImage imageNamed:name]
-#define KIMGV(imgv,imgName) [imgv sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:KIMAGE(@"mine-head")]
 #define KCOLOR_RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define KCOLOR_RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #define KCOLOR_CODE(codeName) [UIColor colorWithHexString:codeName]
@@ -63,15 +63,14 @@
 #define KFONT_24    KFONT(KX(24))
 
 //常用颜色
-#define KCOLOR_ZT  [UIColor colorWithHexString:@"#E76962"]      //主题色
-#define KCOLOR_FF  [UIColor colorWithHexString:@"#FFFFFF"]      //白色
-#define KCOLOR_00  [UIColor colorWithHexString:@"#000000"]      //黑色
-#define KCOLOR_F0  [UIColor colorWithHexString:@"#FF0000"]      //红色
-#define KCOLOR_F1  [UIColor colorWithHexString:@"#F1F1F1"]      //分割线灰色
-#define KCOLOR_1   [UIColor colorWithHexString:@"#111111"]      //文本深色
-#define KCOLOR_3   [UIColor colorWithHexString:@"#333333"]      //文本次深色
-#define KCOLOR_6   [UIColor colorWithHexString:@"#666666"]      //文本中色
-#define KCOLOR_9   [UIColor colorWithHexString:@"#999999"]      //文本浅色
+#define KCOLOR_FF  [UIColor colorWithHexString:@"#FFFFFF"]              //白色
+#define KCOLOR_00  [UIColor colorWithHexString:@"#000000"]              //黑色
+#define KCOLOR_F0  [UIColor colorWithHexString:@"#FF0000"]              //红色
+#define KCOLOR_F1  [UIColor colorWithHexString:@"#F1F1F1"]              //分割线灰色
+#define KCOLOR_1   [UIColor colorWithHexString:@"#111111"]              //文本深色
+#define KCOLOR_3   [UIColor colorWithHexString:@"#333333"]              //文本次深色
+#define KCOLOR_6   [UIColor colorWithHexString:@"#666666"]              //文本中色
+#define KCOLOR_9   [UIColor colorWithHexString:@"#999999"]              //文本浅色
 
 //打印位置
 #ifdef DEBUG

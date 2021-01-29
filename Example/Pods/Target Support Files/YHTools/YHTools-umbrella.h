@@ -15,6 +15,7 @@
 #import "MBProgressHUD.h"
 #import "NSArray+ArrayHelper.h"
 #import "NSDictionary+DicHelper.h"
+#import "NSString+StringHelper.h"
 #import "UIButton+ButtonHelper.h"
 #import "UICollectionView+JHNoData.h"
 #import "UIColor+ColorHelper.h"

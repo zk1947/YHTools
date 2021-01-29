@@ -23,5 +23,19 @@
     
     return strM;
 }
+#pragma mark -数组转json字符串
+-(NSString *)changeToJsonStr{
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self
+                                                   options:NSJSONReadingMutableLeaves | NSJSONReadingAllowFragments
+                                                     error:nil];
+     
+    if (data == nil) {
+        return nil;
+    }
+     
+    NSString *string = [[NSString alloc] initWithData:data
+                                             encoding:NSUTF8StringEncoding];
+    return string;
+}
 
 @end

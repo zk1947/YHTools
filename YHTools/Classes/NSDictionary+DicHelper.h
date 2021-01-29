@@ -12,6 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDictionary (DicHelper)
 
+/// 属性打印
+-(void)logProperty;
+
+/// 获取字典中value防空处理
+-(id)getSafeValue:(NSString *)key;
+
+/// 字典转json字符串
+-(NSString *)changeToJsonStr;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

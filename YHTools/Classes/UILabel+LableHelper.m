@@ -11,88 +11,122 @@
 @implementation UILabel (LableHelper)
 
 #pragma mark -- 改变文本行间距
-+ (void)changeLineSpaceForLabel:(UILabel *)label WithSpace:(float)space {
-    NSString *labelText = label.text;
+- (void)changeLineSpace:(float)space{
+    NSString *labelText = self.text;
     if (labelText.length < 1 || labelText == nil) {
         return;
     }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];    [paragraphStyle setLineSpacing:space];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:space];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
-    label.attributedText = attributedString;
-    [label sizeToFit];
+    self.attributedText = attributedString;
+//    [label sizeToFit];
 }
+
 #pragma mark -- 改变文本中所有数字的字号
-+(void)changeAllNumberFont:(UILabel *)lab withFont:(UIFont *)font{
-    if (lab.text == nil) {
+-(void)changeAllNumberFont:(UIFont *)font;{
+    NSString *labelText = self.text;
+    if (labelText.length < 1 || labelText == nil) {
         return;
     }
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:lab.text];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
     NSString *temp = nil;
     for(int i =0; i < [attributedString length]; i++) {
-        temp = [lab.text substringWithRange:NSMakeRange(i, 1)];
+        temp = [labelText substringWithRange:NSMakeRange(i, 1)];
         if ([self isNum:temp]||[temp isEqualToString:@"."]||[temp isEqualToString:@","]||[temp isEqualToString:@"，"]) {
             [attributedString addAttribute:NSFontAttributeName value:font range:NSMakeRange(i, 1)];
         }
     }
-    lab.attributedText = attributedString;
+    self.attributedText = attributedString;
 }
-+(void)changeAllNumberFont:(UILabel *)lab withFont:(UIFont *)font withColor:(UIColor *)color{
-    if (lab.text == nil) {
+#pragma mark -改变文本中所有数字的字号和字色
+-(void)changeAllNumberFont:(UIFont *)font color:(UIColor *)color;{
+    NSString *labelText = self.text;
+    if (labelText.length < 1 || labelText == nil) {
         return;
     }
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:lab.text];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
     NSString *temp = nil;
     for(int i =0; i < [attributedString length]; i++) {
-        temp = [lab.text substringWithRange:NSMakeRange(i, 1)];
+        temp = [labelText substringWithRange:NSMakeRange(i, 1)];
         if ([self isNum:temp]||[temp isEqualToString:@"."]||[temp isEqualToString:@","]||[temp isEqualToString:@"，"]) {
             [attributedString addAttribute:NSFontAttributeName value:font range:NSMakeRange(i, 1)];
            [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(i, 1)];
         }
     }
-    lab.attributedText = attributedString;
+    self.attributedText = attributedString;
 }
-+(BOOL)isNum:(NSString *)string{
+-(BOOL)isNum:(NSString *)string{
     NSScanner *scan = [NSScanner scannerWithString:string];
     int value;
     return [scan scanInt:&value] && [scan isAtEnd];
 }
-+(void)changeSymbolBehindTxtColor:(UILabel *)lab withFont:(UIFont *)font withColor:(UIColor *)color{
-    if (lab.text == nil) {
+#pragma mark -改变冒号后的所有文本的字号字色
+-(void)changeSymbolBehindTxtColor:(UIFont *)font color:(UIColor *)color{
+    NSString *labelText = self.text;
+    if (labelText.length < 1 || labelText == nil) {
         return;
     }
-    NSString *labTxtStr = lab.text;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labTxtStr];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
     //字符串截取
-//    NSString *symbolStr1 = @":";
+    NSString *symbolStr1 = @":";
     NSString *symbolStr2 = @"：";
-//    NSRange startRange = [labTxtStr rangeOfString:symbolStr1];
-    NSRange startRange2 = [labTxtStr rangeOfString:symbolStr2];
+    NSRange startRange = [labelText rangeOfString:symbolStr1];
+    NSRange startRange2 = [labelText rangeOfString:symbolStr2];
     NSRange changeRange;
-//    if (startRange.location != NSNotFound) {
-//         changeRange = NSMakeRange(startRange.location, labTxtStr.length-startRange.location);
-//    }
+    if (startRange.location != NSNotFound) {
+         changeRange = NSMakeRange(startRange.location, labelText.length-startRange.location);
+    }
     if (startRange2.location != NSNotFound) {
-         changeRange = NSMakeRange(startRange2.location, labTxtStr.length-startRange2.location);
+         changeRange = NSMakeRange(startRange2.location, labelText.length-startRange2.location);
     }
     if (changeRange.location != NSNotFound) {
         [attributedString addAttribute:NSFontAttributeName value:font range:changeRange];
         [attributedString addAttribute:NSForegroundColorAttributeName value:color range:changeRange];
-        lab.attributedText = attributedString;
+        self.attributedText = attributedString;
     }
 }
-+ (void)changePartTxtColor:(UILabel *)label withRange:(NSRange)range withColor:(UIColor *)color{
-    NSString *labelText = label.text;
+#pragma mark -改变指定部分文字字号
+- (void)changePartTxtFont:(UIFont *)font range:(NSRange)range{
+    NSString *labelText = self.text;
     if (labelText.length < 1 || labelText == nil) {
         return;
     }
     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:labelText];
-//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-//    [paragraphStyle setLineSpacing:KSPACE_8];
-//    [attributeString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
-    NSRange contentRange = range;
-    [attributeString addAttribute:NSForegroundColorAttributeName value:color range:contentRange];
-    label.attributedText = attributeString;
+    [attributeString addAttribute:NSFontAttributeName value:font range:range];
+    self.attributedText = attributeString;
+}
+#pragma mark -改变指定部分文字颜色
+- (void)changePartTxtColor:(UIColor *)color range:(NSRange)range{
+    NSString *labelText = self.text;
+    if (labelText.length < 1 || labelText == nil) {
+        return;
+    }
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:labelText];
+    [attributeString addAttribute:NSForegroundColorAttributeName value:color range:range];
+    self.attributedText = attributeString;
+}
+#pragma mark -改变指定部分文字字号和字色
+- (void)changePartTxtFont:(UIFont *)font color:(UIColor *)color range:(NSRange)range{
+    NSString *labelText = self.text;
+    if (labelText.length < 1 || labelText == nil) {
+        return;
+    }
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:labelText];
+    [attributeString addAttribute:NSFontAttributeName value:font range:range];
+    [attributeString addAttribute:NSForegroundColorAttributeName value:color range:range];
+    self.attributedText = attributeString;
+}
+#pragma mark -部分文本添加删除线
+-(void)addDeleteLine:(NSRange)range{
+    NSString *labelText = self.text;
+    if (labelText.length < 1 || labelText == nil) {
+        return;
+    }
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
+    [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:range];
+    self.attributedText = attributedString;
 }
 
 @end

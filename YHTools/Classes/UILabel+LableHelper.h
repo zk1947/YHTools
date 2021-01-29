@@ -13,22 +13,32 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UILabel (LableHelper)
 
 /** *  改变文本行间距 */
-+ (void)changeLineSpaceForLabel:(UILabel *)label WithSpace:(float)space;
+- (void)changeLineSpace:(float)space;
 
 /** *  改变文本中所有数字的字号 */
-+(void)changeAllNumberFont:(UILabel *)lab withFont:(UIFont *)font;
+-(void)changeAllNumberFont:(UIFont *)font;
 
 /** *  改变文本中所有数字的字号和字色 */
-+(void)changeAllNumberFont:(UILabel *)lab withFont:(UIFont *)font withColor:(UIColor *)color;
+-(void)changeAllNumberFont:(UIFont *)font color:(UIColor *)color;
 
 /** * 判断文本是否是数字 */
-+(BOOL)isNum:(NSString *)string;
+-(BOOL)isNum:(NSString *)string;
 
-/** *  改变冒号后的所有文本的字色 */
-+(void)changeSymbolBehindTxtColor:(UILabel *)lab withFont:(UIFont *)font withColor:(UIColor *)color;
+/** *  改变冒号后的所有文本的字号字色 */
+-(void)changeSymbolBehindTxtColor:(UIFont *)font color:(UIColor *)color;
 
-/** *  改变部分文字颜色 */
-+ (void)changePartTxtColor:(UILabel *)label withRange:(NSRange)range withColor:(UIColor *)color;
+/** *  改变指定部分文字字号 */
+- (void)changePartTxtFont:(UIFont *)font range:(NSRange)range;
+
+/** *  改变指定部分文字颜色 */
+- (void)changePartTxtColor:(UIColor *)color range:(NSRange)range;
+
+/** *  改变指定部分文字字号和字色 */
+- (void)changePartTxtFont:(UIFont *)font color:(UIColor *)color range:(NSRange)range;
+
+/** *  部分文本添加删除线 */
+-(void)addDeleteLine:(NSRange)range;
+
 
 @end
 

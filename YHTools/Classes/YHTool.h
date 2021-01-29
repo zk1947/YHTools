@@ -13,32 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YHTool : NSObject
 
-+(void)test;
-
-/************* 字符串API ************/
-+(BOOL)isNotBlank:(NSString *)string;   /** 空串判断 */
-+(NSDictionary *)strToDic:(NSString *)string;   /** 字符串转字典 */
-+(NSString *)strChangeToDate:(NSString *)timeStr;/** 时间戳转换日期 */
-+(CGFloat)getTextWidth:(NSString *)string font:(UIFont *)font;  /** 获取文本宽度 */
-+(CGFloat)getTextHeight:(NSString *)string font:(UIFont *)font width:(CGFloat)width;   /** 获取文本高度 */
-+(CGFloat)getTextHeight:(NSString *)string font:(UIFont *)font width:(CGFloat)width space:(CGFloat)space; /** 获取文本高度带行间距 */
-
-/************* 字典API ************/
-+(void)logProperty:(NSDictionary *)dic;  /** 属性打印 */
-+(id)safeGetValue:(NSDictionary *)dic key:(NSString *)key;  /** 获取字典中value防空处理 */
-+(NSString *)dicToStr:(NSDictionary *)dic;  /** 字典转json字符串 */
-
-+(NSString *)arrayToJSONString:(NSArray *)arr;/** 数组转json */
-
-/************* Data API ************/
-+(NSDictionary *)dataToDic:(NSData *)data;  /** Data转字典 */
-
 /************* 本地数据存储API ************/
-+(NSMutableDictionary *)getLocalResource;   /** 获取本地数据源 */
++(NSMutableDictionary *)getLocalResource;                   /** 获取本地数据源 */
 +(void)saveDataToLocal:(id)value withKey:(NSString *)key;   /** 保存数据到本地 */
-+(id)getLocalData:(NSString *)key;  /** 获取本地数据 */
-+(void)removeAllLocalData;  /** 清空本地数据 */
-
++(id)getLocalData:(NSString *)key;                          /** 获取本地数据 */
++(void)removeLocalData:(NSString *)key;                     /** 删除本地数据 */
++(void)removeAllLocalData;                                  /** 清空本地数据 */
++(id)getMyProjectConfigMessage:(NSString *)key;             /** 获取项目配置信息 */
 
 /** UILabel */
 +(UILabel *)creatLableWithFont:(UIFont *)font color:(UIColor *)color txt:(NSString *)txt;
@@ -54,7 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIButton *)createMixBtn:(NSString *)tit titColor:(UIColor *)titColor titFont:(UIFont *)font Img:(NSString *)img addTarget:(nullable id)target action:(SEL)action;
 +(UIButton *)createMixBtn:(CGRect)frame Tit:(NSString *)tit titColor:(UIColor *)titColor titFont:(UIFont *)font Img:(NSString *)img addTarget:(nullable id)target action:(SEL)action;
 +(UIButton *)createSubmitBtn:(CGRect)frame Tit:(NSString *)tit titColor:(UIColor *)titColor titFont:(UIFont *)font backColor:(UIColor *)backColor addTarget:(nullable id)target action:(SEL)action;
-
 
 /** UIImageView */
 +(UIImageView *)creatImageViewWithFrame:(CGRect)frame imgName:(NSString *)imgName;
@@ -72,13 +52,16 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)showMsg:(NSString *)msg withLeftTit:(NSString *)leftTit withRightTit:(NSString *)rightTit withEvent:(void(^)(BOOL isTrue))touchTowEvent;//自定义弹窗 （双事件）
 +(void)showSheet:(void(^)(NSInteger index))touchSheetEvent;//sheet
 
+/** Data转字典 */
++(NSDictionary *)dataToDic:(NSData *)data;
+
 /** 获取底部安全距离 */
 + (CGFloat)safeAreaHeight;
 
 /** 全面屏机型判断 */
 +(BOOL)isFullScreenIphone;
 
-/** 用手机浏览器打开页面 */
+/** 跳转手机浏览器打开页面 */
 +(void)openPageInWeb:(NSString *)url;
 
 @end

@@ -12,161 +12,6 @@
 
 @implementation YHTool
 
-+(void)test{
-    NSLog(@"qq");
-}
-
-#pragma mark -空串判断
-+(BOOL)isNotBlank:(NSString *)string{
-    if (!string) {
-        return NO;
-    }
-    if ([self isKindOfClass:[NSNull class]]) {
-        return NO;
-    }
-    NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    NSString *trimmedStr = [string stringByTrimmingCharactersInSet:set];
-    if (!trimmedStr.length) {
-        return NO;
-    }
-    return YES;
-}
-#pragma mark -字符串转字典
-+(NSDictionary *)strToDic:(NSString *)string{
-    if (string == nil){
-        return nil;
-    }
-    NSData *jsonData = [string dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    if(err)
-    {
-        NSLog(@"json解析失败：%@",err);
-        return nil;
-    }
-    return dic;
-}
-#pragma mark -时间戳转换日期
-+(NSString *)strChangeToDate:(NSString *)timeStr{
-    long long time=[timeStr longLongValue];
-    //    如果服务器返回的是13位字符串，需要除以1000，否则显示不正确(13位其实代表的是毫秒，需要除以1000)
-    //    long long time=[timeStr longLongValue] / 1000;
-    NSDate *date = [[NSDate alloc]initWithTimeIntervalSince1970:time];
-
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-
-    NSString*timeString=[formatter stringFromDate:date];
-
-    return timeString;
-}
-#pragma mark -获取文本宽度
-+(CGFloat)getTextWidth:(NSString *)string font:(UIFont *)font{
-    CGSize size = [string boundingRectWithSize:CGSizeMake(1000, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
-    return size.width;
-}
-#pragma mark -获取文本高度
-+(CGFloat)getTextHeight:(NSString *)string font:(UIFont *)font width:(CGFloat)width{
-    //设置行间距
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    CGSize size = [string boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle} context:nil].size;
-    return size.height;
-}
-+(CGFloat)getTextHeight:(NSString *)string font:(UIFont *)font width:(CGFloat)width space:(CGFloat)space{
-    //设置行间距
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:space];
-    CGSize size = [string boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle} context:nil].size;
-    return size.height;
-}
-#pragma mark -属性打印
-+(void)logProperty:(NSDictionary *)dic{
-    NSMutableString *proprety = [[NSMutableString alloc] init];
-    //遍历数组 生成声明属性的代码，例如 @property (nonatomic, copy) NSString str
-    //打印出来后 command+c command+v
-    [dic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        NSString *str;
-        //        NSLog(@"%@",[obj class]);
-        //判断的数据类型，生成相应的属性
-        if ([obj isKindOfClass:NSClassFromString(@"__NSCFString")] || [obj isKindOfClass:NSClassFromString(@"NSTaggedPointerString")] || [obj isKindOfClass:NSClassFromString(@"__NSCFConstantString")]) {
-            str = [NSString stringWithFormat:@"@property (nonatomic, copy) NSString *%@;",key];
-        }
-        if ([obj isKindOfClass:NSClassFromString(@"__NSCFNumber")]) {
-            str = [NSString stringWithFormat:@"@property (nonatomic, assign) int %@;",key];
-        }
-        if ([obj isKindOfClass:NSClassFromString(@"__NSCFArray")] || [obj isKindOfClass:[NSArray class]]) {
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;",key];
-        }
-        
-        if ([obj isKindOfClass:NSClassFromString(@"__NSCFDictionary")] || [obj isKindOfClass:[NSDictionary class]]) {
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSDictionary *%@;",key];
-        }
-        if ([obj isKindOfClass:NSClassFromString(@"__NSCFBoolean")]) {
-            str = [NSString stringWithFormat:@"@property (nonatomic, assign) BOOL %@;",key];
-        }
-        [proprety appendFormat:@"\n%@\n",str];
-    }];
-    NSLog(@"%@",proprety);
-}
-#pragma mark -获取字典中value防空处理
-+(id)safeGetValue:(NSDictionary *)dic key:(NSString *)key{
-    id object = [dic objectForKey:key];
-    if ([object isKindOfClass:[NSNull class]]) {
-        object = nil;
-    }
-    return object;
-}
-#pragma mark -字典转json字符串
-+(NSString *)dicToStr:(NSDictionary *)dic{
-    NSError *error;
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
-
-    NSString *jsonString;
-
-    if (!jsonData) {
-
-        NSLog(@"%@",error);
-
-    }else{
-
-        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-
-    }
-
-    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
-
-    NSRange range = {0,jsonString.length};
-
-    //去掉字符串中的空格
-
-    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
-
-    NSRange range2 = {0,mutStr.length};
-
-    //去掉字符串中的换行符
-
-    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
-
-    return mutStr;
-}
-
-+(NSString *)arrayToJSONString:(NSArray *)arr{
-    NSData *data = [NSJSONSerialization dataWithJSONObject:arr
-                                                   options:NSJSONReadingMutableLeaves | NSJSONReadingAllowFragments
-                                                     error:nil];
-     
-    if (data == nil) {
-        return nil;
-    }
-     
-    NSString *string = [[NSString alloc] initWithData:data
-                                             encoding:NSUTF8StringEncoding];
-    return string;
-}
-
-
 #pragma mark -data转dic
 +(NSDictionary *)dataToDic:(NSData *)data{
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -200,13 +45,28 @@
 +(id)getLocalData:(NSString *)key{
     NSMutableDictionary *userMsgDic = [self getLocalResource];
     id obj = [userMsgDic objectForKey:key];
-    return obj ? obj:@"";
+    return obj ? obj:nil;
+}
+#pragma mark -删除本地数据
++(void)removeLocalData:(NSString *)key{
+    NSMutableDictionary *userMsgDic = [self getLocalResource];
+    if (userMsgDic) {
+        [userMsgDic removeObjectForKey:key];
+        [userMsgDic writeToFile:KPath atomically:YES];
+    }
 }
 #pragma mark -清空本地数据
 +(void)removeAllLocalData{
     NSMutableDictionary *userMsgDic = [self getLocalResource];
     [userMsgDic removeAllObjects];
     [userMsgDic writeToFile:KPath atomically:YES];
+}
+#pragma mark -获取项目配置信息
++(id)getMyProjectConfigMessage:(NSString *)key{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"MyConfigFile" ofType:@"plist"];
+    NSDictionary *fileDictionary = [[NSDictionary alloc]initWithContentsOfFile:filePath];
+    id obj = [fileDictionary objectForKey:key];
+    return obj ? obj:nil;
 }
 
 #pragma mark - Lable
@@ -326,7 +186,7 @@
     textField.placeholder = placeHolder;
     textField.font = font;
     textField.textColor = color;
-    textField.autocapitalizationType = YES;//关闭首字母大写
+    textField.autocapitalizationType = YES;//关闭键盘首字母大写
     return textField;
 }
 
@@ -370,7 +230,7 @@
     [alert setValue:[self changeMsgFontAndColor:msg] forKey:@"attributedMessage"];
     //修改按钮的颜色
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    [sure setValue:KCOLOR_ZT forKey:@"_titleTextColor"];
+    [sure setValue:KCOLOR_F0 forKey:@"_titleTextColor"];
     [alert addAction:sure];
     
     UIViewController *vc = [self getCurrentVC];
@@ -383,7 +243,7 @@
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         touchEvent();
     }];
-    [sure setValue:KCOLOR_ZT forKey:@"_titleTextColor"];
+    [sure setValue:KCOLOR_F0 forKey:@"_titleTextColor"];
     [alert addAction:sure];
     UIViewController *vc = [self getCurrentVC];
     [vc presentViewController:alert animated:true completion:nil];
@@ -401,7 +261,7 @@
     UIAlertAction *rightBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         touchEvent(YES);
     }];
-    [rightBtn setValue:KCOLOR_ZT forKey:@"_titleTextColor"];
+    [rightBtn setValue:KCOLOR_F0 forKey:@"_titleTextColor"];
     [alert addAction:rightBtn];
     UIViewController *vc = [self getCurrentVC];
     [vc presentViewController:alert animated:true completion:nil];
@@ -419,7 +279,7 @@
     UIAlertAction *rightBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         touchEvent(YES);
     }];
-    [rightBtn setValue:KCOLOR_ZT forKey:@"_titleTextColor"];
+    [rightBtn setValue:KCOLOR_F0 forKey:@"_titleTextColor"];
     [alert addAction:rightBtn];
     UIViewController *vc = [self getCurrentVC];
     [vc presentViewController:alert animated:true completion:nil];
@@ -437,7 +297,7 @@
     UIAlertAction *rightBtn = [UIAlertAction actionWithTitle:rightTit style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         touchTowEvent(YES);
     }];
-    [rightBtn setValue:KCOLOR_ZT forKey:@"_titleTextColor"];
+    [rightBtn setValue:KCOLOR_F0 forKey:@"_titleTextColor"];
     [alert addAction:rightBtn];
     UIViewController *vc = [self getCurrentVC];
     [vc presentViewController:alert animated:true completion:nil];

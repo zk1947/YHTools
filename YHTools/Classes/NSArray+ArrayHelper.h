@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (ArrayHelper)
 
+/// 数组转json字符串
+-(NSString *)changeToJsonStr;
+
 @end
 
 NS_ASSUME_NONNULL_END
