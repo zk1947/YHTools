@@ -20,9 +20,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    
-    
-    
+    NSString *str = [YHTool getMyProjectThemeColor:@"themeColor"];
+    NSLog(@"%@",str);
+    NSString *str2 = [YHTool getMyProjectThemeColor:@"themeColor"];
+    NSLog(@"%@",str2);
 }
 
 - (void)didReceiveMemoryWarning

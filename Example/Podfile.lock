@@ -1,10 +1,28 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - YHTools (0.0.1)
+  - MJRefresh (3.5.0)
+  - YHTools (0.0.1):
+    - AFNetworking
+    - MJRefresh
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -12,16 +30,20 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
     - FBSnapshotTestCase
+    - MJRefresh
 
 EXTERNAL SOURCES:
   YHTools:
     :path: "../"
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  YHTools: 44c3d15d9c8ea88a4aa04223cd69ed8008cba4b0
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  YHTools: 7dc11d2d0efaffb6dd7c7f6ad15871adb9ab2ffe
 
 PODFILE CHECKSUM: 5fbb356a4ce6454138dbe577786bb238896d3b17
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.9.3

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)removeLocalData:(NSString *)key;                     /** 删除本地数据 */
 +(void)removeAllLocalData;                                  /** 清空本地数据 */
 +(id)getMyProjectConfigMessage:(NSString *)key;             /** 获取项目配置信息 */
++(NSString *)getMyProjectThemeColor:(NSString *)key;        /** 获取项目主题颜色 */
 
 /** UILabel */
 +(UILabel *)creatLableWithFont:(UIFont *)font color:(UIColor *)color txt:(NSString *)txt;

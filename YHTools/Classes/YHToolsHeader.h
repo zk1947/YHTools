@@ -19,7 +19,6 @@
 #import "UILabel+LableHelper.h"
 #import "UIButton+ButtonHelper.h"
 #import "YXHUDProgressView.h"
-
 //常用API
 #define KTITLE(name) self.navigationItem.title = name
 #define KPUSH(pushVC) [self.navigationController pushViewController:pushVC animated:YES]
@@ -63,6 +62,7 @@
 #define KFONT_24    KFONT(KX(24))
 
 //常用颜色
+#define KCOLOR_ZT  [UIColor colorWithHexString:[YHTool getMyProjectThemeColor:@"themeColor"]] //主题色
 #define KCOLOR_FF  [UIColor colorWithHexString:@"#FFFFFF"]              //白色
 #define KCOLOR_00  [UIColor colorWithHexString:@"#000000"]              //黑色
 #define KCOLOR_F0  [UIColor colorWithHexString:@"#FF0000"]              //红色

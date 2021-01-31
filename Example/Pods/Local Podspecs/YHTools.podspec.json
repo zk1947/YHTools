@@ -18,5 +18,13 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "YHTools/Classes/**/*"
+  "source_files": "YHTools/Classes/**/*",
+  "dependencies": {
+    "AFNetworking": [
+
+    ],
+    "MJRefresh": [
+
+    ]
+  }
 }

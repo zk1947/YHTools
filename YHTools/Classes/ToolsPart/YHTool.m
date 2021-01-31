@@ -10,6 +10,8 @@
 
 #define KPath [NSHomeDirectory() stringByAppendingString:@"/Documents/UserMsg.plist"]
 
+static NSString *themeColor = nil;//项目主题颜色码
+
 @implementation YHTool
 
 #pragma mark -data转dic
@@ -68,7 +70,15 @@
     id obj = [fileDictionary objectForKey:key];
     return obj ? obj:nil;
 }
-
+#pragma mark -获取项目主题颜色码
++(NSString *)getMyProjectThemeColor:(NSString *)key{
+    if (!themeColor) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"MyConfigFile" ofType:@"plist"];
+        NSDictionary *fileDictionary = [[NSDictionary alloc]initWithContentsOfFile:filePath];
+        themeColor = [fileDictionary objectForKey:key];
+    }
+    return themeColor;
+}
 #pragma mark - Lable
 +(UILabel *)creatLableWithFont:(UIFont *)font color:(UIColor *)color txt:(NSString *)txt{
     UILabel *label = [[UILabel alloc] init];
