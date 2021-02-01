@@ -256,6 +256,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "zk1947@163.com";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = BUY32329YH;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -527,6 +530,7 @@
 			baseConfigurationReference = 059C2C57BEF804A35AA34721 /* Pods-YHTools_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BUY32329YH;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YHTools/YHTools-Prefix.pch";
 				INFOPLIST_FILE = "YHTools/YHTools-Info.plist";
@@ -543,6 +547,7 @@
 			baseConfigurationReference = 87076EA9D39D42E0B90D2620 /* Pods-YHTools_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BUY32329YH;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YHTools/YHTools-Prefix.pch";
 				INFOPLIST_FILE = "YHTools/YHTools-Info.plist";
