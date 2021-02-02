@@ -7,12 +7,21 @@
 //
 
 #import "YHAppDelegate.h"
+#import "MainTabBarController.h"
 
 @implementation YHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    self.window.rootViewController = [MainTabBarController new];
+    
+    
     return YES;
 }
 

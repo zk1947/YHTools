@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1AFDDE25C8F04D00A640B0 /* MainTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AFDDB25C8F04C00A640B0 /* MainTabBar.m */; };
+		4B1AFDDF25C8F04D00A640B0 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AFDDC25C8F04D00A640B0 /* MainTabBarController.m */; };
 		4BBE395225C3A8C000986CDB /* MyConfigFile.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BBE395125C3A8C000986CDB /* MyConfigFile.plist */; };
 		5C27A3CB25C6F2F30082A3F4 /* YHNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C27A3CA25C6F2F30082A3F4 /* YHNetwork.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -44,6 +46,10 @@
 		1FD28BCE2679E5007E8FA504 /* YHTools.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YHTools.podspec; path = ../YHTools.podspec; sourceTree = "<group>"; };
 		337831106662AC4FF977F45C /* Pods-YHTools_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHTools_Tests.debug.xcconfig"; path = "Target Support Files/Pods-YHTools_Tests/Pods-YHTools_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		34FE81370E340B38FC18B000 /* Pods_YHTools_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YHTools_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1AFDDA25C8F04C00A640B0 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		4B1AFDDB25C8F04C00A640B0 /* MainTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBar.m; sourceTree = "<group>"; };
+		4B1AFDDC25C8F04D00A640B0 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		4B1AFDDD25C8F04D00A640B0 /* MainTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBar.h; sourceTree = "<group>"; };
 		4BBE395125C3A8C000986CDB /* MyConfigFile.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MyConfigFile.plist; sourceTree = "<group>"; };
 		5C27A3C925C6F2F30082A3F4 /* YHNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHNetwork.h; sourceTree = "<group>"; };
 		5C27A3CA25C6F2F30082A3F4 /* YHNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YHNetwork.m; sourceTree = "<group>"; };
@@ -153,6 +159,10 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* YHViewController.h */,
 				6003F5A6195388D20070C39A /* YHViewController.m */,
+				4B1AFDDD25C8F04D00A640B0 /* MainTabBar.h */,
+				4B1AFDDB25C8F04C00A640B0 /* MainTabBar.m */,
+				4B1AFDDA25C8F04C00A640B0 /* MainTabBarController.h */,
+				4B1AFDDC25C8F04D00A640B0 /* MainTabBarController.m */,
 				5C27A3C925C6F2F30082A3F4 /* YHNetwork.h */,
 				5C27A3CA25C6F2F30082A3F4 /* YHNetwork.m */,
 				4BBE395125C3A8C000986CDB /* MyConfigFile.plist */,
@@ -401,7 +411,9 @@
 			files = (
 				6003F59E195388D20070C39A /* YHAppDelegate.m in Sources */,
 				5C27A3CB25C6F2F30082A3F4 /* YHNetwork.m in Sources */,
+				4B1AFDDF25C8F04D00A640B0 /* MainTabBarController.m in Sources */,
 				6003F5A7195388D20070C39A /* YHViewController.m in Sources */,
+				4B1AFDDE25C8F04D00A640B0 /* MainTabBar.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 
 #import "YHViewController.h"
 #import "YHToolsHeader.h"
+#import "BaseViewController.h"
 
 @interface YHViewController ()
 
@@ -20,10 +21,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    NSString *str = [YHTool getMyProjectThemeColor:@"themeColor"];
-    NSLog(@"%@",str);
-    NSString *str2 = [YHTool getMyProjectThemeColor:@"themeColor"];
-    NSLog(@"%@",str2);
+    UIButton *btn = [YHTool createTxtBtn:CGRectMake(0, 100, 200, 200) Tit:@"sdsd" titColor:KCOLOR_ZT titFont:KFONT_17 addTarget:self action:@selector(test)];
+    [self.view addSubview:btn];
+}
+
+-(void)test{
+    
+    BaseViewController *vc = [BaseViewController new];
+    KPUSH(vc);
+    
 }
 
 - (void)didReceiveMemoryWarning
