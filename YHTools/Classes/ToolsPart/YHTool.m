@@ -182,6 +182,20 @@ static NSString *themeColor = nil;//项目主题颜色码
     return btn;
 }
 
++(UIBarButtonItem *)creatImgBarButtonItem:(CGRect)frame imgName:(NSString *)imgName addTarget:(nullable id)target action:(SEL)action{
+    UIButton *button = [YHTool createImgBtn:CGRectMake(0, 0, 44, 44) Img:imgName addTarget:target action:action];
+    button.imgRect = frame;
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [view addSubview:button];
+    return [[UIBarButtonItem alloc] initWithCustomView:view];
+}
+
++(UIBarButtonItem *)creatTxtBarButtonItem:(NSString *)titStr font:(UIFont *)font color:(UIColor *)color addTarget:(nullable id)target action:(SEL)action{
+    CGFloat w = [titStr getTextWidth:font] + 10;
+    UIButton *button = [YHTool createTxtBtn:CGRectMake(0, 0, w, 44) Tit:titStr titColor:color titFont:font addTarget:target action:action];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
+
 #pragma mark - UIImageView
 +(UIImageView *)creatImageViewWithFrame:(CGRect)frame imgName:(NSString *)imgName{
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:frame];

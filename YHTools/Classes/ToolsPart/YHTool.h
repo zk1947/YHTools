@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIButton *)createMixBtn:(NSString *)tit titColor:(UIColor *)titColor titFont:(UIFont *)font Img:(NSString *)img addTarget:(nullable id)target action:(SEL)action;
 +(UIButton *)createMixBtn:(CGRect)frame Tit:(NSString *)tit titColor:(UIColor *)titColor titFont:(UIFont *)font Img:(NSString *)img addTarget:(nullable id)target action:(SEL)action;
 +(UIButton *)createSubmitBtn:(CGRect)frame Tit:(NSString *)tit titColor:(UIColor *)titColor titFont:(UIFont *)font backColor:(UIColor *)backColor addTarget:(nullable id)target action:(SEL)action;
++(UIBarButtonItem *)creatImgBarButtonItem:(CGRect)frame imgName:(NSString *)imgName addTarget:(nullable id)target action:(SEL)action;
++(UIBarButtonItem *)creatTxtBarButtonItem:(NSString *)titStr font:(UIFont *)font color:(UIColor *)color addTarget:(nullable id)target action:(SEL)action;
 
 /** UIImageView */
 +(UIImageView *)creatImageViewWithFrame:(CGRect)frame imgName:(NSString *)imgName;
