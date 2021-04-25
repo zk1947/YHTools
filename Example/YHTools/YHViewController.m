@@ -27,8 +27,18 @@
 
 -(void)test{
     
-    BaseViewController *vc = [BaseViewController new];
-    KPUSH(vc);
+    
+//    ShowMessage(@"测试文本效果");
+    
+//    ShowDefaultSuccessView(@"测试成功效果", nil);
+    
+//    ShowDefaultErrorView(@"测试失败效果", nil);
+    
+//    ShowDefaultLoadingView(@"加载中...");
+    
+    
+//    BaseViewController *vc = [BaseViewController new];
+//    KPUSH(vc);
     
 }
 
